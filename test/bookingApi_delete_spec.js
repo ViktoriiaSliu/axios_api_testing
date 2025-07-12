@@ -1,0 +1,35 @@
+import { expect } from 'chai';
+import { BookingApi } from '../test/bookingApi.js';
+import { buildBookingPayload } from '../test/payload.js';
+
+describe('Booking API - Delete Booking', function() {
+    this.timeout(10000);
+
+    const bookingApi = new BookingApi();
+    let bookingId, deleteResult;
+
+    before(async function() {
+        await bookingApi.authenticate();
+        const bookingPayload = buildBookingPayload();
+        const createResponse = await bookingApi.createBooking(bookingPayload);
+        bookingId = createResponse.data.bookingid;
+        deleteResult = await bookingApi.deleteBooking(bookingId);
+    });
+
+    it('should return status 201', function() {
+        expect(deleteResult.status).to.equal(201);
+    });
+
+    it('should return "Created"', function() {
+        expect(deleteResult.data).to.equal('Created');
+    });
+
+    it('should not find the deleted booking', async function() {
+        try {
+            await bookingApi.getBooking(bookingId);
+            throw new Error('Booking was not actually deleted!');
+        } catch (error) {
+            expect(error.response.status).to.equal(404);
+        }
+    });
+});

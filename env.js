@@ -1,0 +1,5 @@
+export const ENV = {
+    BASE_URL: 'https://restful-booker.herokuapp.com',
+    ADMIN_USER: 'admin',
+    ADMIN_PASS: 'password123'
+};
