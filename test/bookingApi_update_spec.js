@@ -32,6 +32,4 @@ describe('Booking API - Update Booking', function() {
     it('should update firstname', function() {
         expect(response.data.firstname).to.equal('Jane');
     });
-
-    // ...add more property checks as needed
 });
