@@ -29,6 +29,4 @@ describe('Booking API - Get Booking', function() {
     it('should return firstname John', function() {
         expect(response.data.firstname).to.equal('John');
     });
-
-    // ...add more property checks as needed
 });
