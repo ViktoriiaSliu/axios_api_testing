@@ -11,7 +11,7 @@ describe('Booking API - Update Booking', function() {
     before(async function() {
         await bookingApi.authenticate();
         const bookingPayload = buildBookingPayload();
-        const createResponse = await bookingApi.createBooking(bookingPayload);
+        const createResponse = await bookingApi.sendPostRequest('/booking', bookingPayload);
         bookingId = createResponse.data.bookingid;
         updatedBookingPayload = buildBookingPayload({
             firstname: 'Jane',
@@ -33,5 +33,4 @@ describe('Booking API - Update Booking', function() {
         expect(response.data.firstname).to.equal('Jane');
     });
 
-    // ...add more property checks as needed
 });

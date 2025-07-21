@@ -11,8 +11,9 @@ describe('Booking API - Create Booking', function() {
     before(async function() {
         await bookingApi.authenticate();
         bookingPayload = buildBookingPayload();
-        response = await bookingApi.createBooking(bookingPayload);
+        response = await bookingApi.sendPostRequest('/booking', bookingPayload);
         bookingId = response.data.bookingid;
+        console.log('Booking ID:', bookingId);
     });
 
     it('should return status 200', function() {

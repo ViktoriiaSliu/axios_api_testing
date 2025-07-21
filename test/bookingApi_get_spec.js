@@ -21,14 +21,14 @@ describe('Booking API - Get Booking', function() {
             },
             additionalneeds: 'Breakfast'
         };
-        const createResponse = await bookingApi.createBooking(bookingPayload);
+        const createResponse = await bookingApi.sendPostRequest('/booking', bookingPayload);
         bookingId = createResponse.data.bookingid;
-        response = await bookingApi.getBooking(bookingId);
+        console.log('Booking ID:', bookingId);
+        response = await bookingApi.sendGetRequest(bookingId);
     });
 
     it('should return firstname John', function() {
         expect(response.data.firstname).to.equal('John');
     });
 
-    // ...add more property checks as needed
 });
