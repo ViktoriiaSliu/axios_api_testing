@@ -10,14 +10,14 @@ pipeline {
         stage('Install Dependencies') {
             steps {
                 echo "Installing Node.js dependencies..."
-                sh 'npm install'
+                bat 'npm install'
             }
         }
 
         stage('Run API Tests') { 
             steps {
                 echo "Running API tests..." 
-                sh 'npm run test:api' 
+                bat 'npm run test:api' 
             }
         }
     }
