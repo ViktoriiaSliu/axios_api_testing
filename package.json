@@ -4,7 +4,7 @@
   "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/**/*_spec.js",
+    "test": "mocha --reporter mocha-simple-html-reporter --reporter-options output=reports/test-report.html",
     "test:api": "mocha test/*_spec.js"
   },
   "keywords": [],
@@ -14,7 +14,8 @@
   "devDependencies": {
     "axios": "^1.10.0",
     "chai": "^5.2.1",
-    "mocha": "^11.7.1"
+    "mocha": "^11.7.1",
+    "mocha-simple-html-reporter": "^2.0.0"
   },
   "dependencies": {
     "dotenv": "^17.2.0"
