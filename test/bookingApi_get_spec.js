@@ -24,7 +24,7 @@ describe('Booking API - Get Booking', function() {
         const createResponse = await bookingApi.sendPostRequest('/booking', bookingPayload);
         bookingId = createResponse.data.bookingid;
         console.log('Booking ID:', bookingId);
-        response = await bookingApi.sendGetRequest(bookingId);
+        response = await bookingApi.sendGetRequest(`/booking/${bookingId}`);
     });
 
     it('should return firstname John', function() {

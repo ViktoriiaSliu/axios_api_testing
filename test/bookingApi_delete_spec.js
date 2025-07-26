@@ -13,7 +13,7 @@ describe('Booking API - Delete Booking', function() {
         const bookingPayload = buildBookingPayload();
         const createResponse = await bookingApi.sendPostRequest('/booking', bookingPayload);
         bookingId = createResponse.data.bookingid;
-        deleteResult = await bookingApi.sendDeleteRequest(bookingId);
+        deleteResult = await bookingApi.sendDeleteRequest(`/booking/${bookingId}`);
     });
 
     it('should return status 201', function() {
@@ -25,8 +25,11 @@ describe('Booking API - Delete Booking', function() {
     });
 
     it('should not find the deleted booking', async function() {
-
-        const response = await bookingApi.sendGetRequest(bookingId);
-        expect(response.status).to.equal(404);
+        try {
+            await bookingApi.sendGetRequest(`/booking/${bookingId}`);
+            throw new Error('Booking was not actually deleted!');
+        } catch (error) {
+            expect(error.response?.status).to.equal(404);
+        }
     });
 });

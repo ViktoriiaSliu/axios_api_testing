@@ -22,7 +22,7 @@ describe('Booking API - Update Booking', function() {
             checkout: '2025-07-15',
             additionalneeds: 'Lunch'
         });
-        response = await bookingApi.updateBooking(bookingId, updatedBookingPayload);
+        response = await bookingApi.updateBooking(`/booking/${bookingId}`, updatedBookingPayload);
     });
 
     it('should return status 200', function() {
