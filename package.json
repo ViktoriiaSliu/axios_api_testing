@@ -10,7 +10,7 @@
     "format:fix": "prettier --write .",
     "test": "mocha --reporter mocha-simple-html-reporter --reporter-options output=reports/test-report.html",
     "test:api": "mocha test/*_spec.js",
-    "format:check": "prettier \"test/**/*.js\" --check --config .prettierrc"
+    "format:check": "prettier \"test/**/*.js\" --write"
   },
   "keywords": [],
   "author": "",
