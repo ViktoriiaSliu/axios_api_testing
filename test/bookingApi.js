@@ -48,7 +48,7 @@ export class BookingApi {
       });
     } catch (error) {
       console.error('Get failed:', error.message);
-      throw new Error('Get request failed');
+      throw error;
     }
   }
 
