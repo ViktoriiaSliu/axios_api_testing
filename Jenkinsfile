@@ -23,7 +23,7 @@ pipeline {
         stage('Format Check') {
             steps {
                 echo "Format code..."
-                bat 'npm run format'
+                bat 'npm run format:check'
             }
         }
 
