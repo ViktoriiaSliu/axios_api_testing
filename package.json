@@ -10,7 +10,7 @@
     "format:fix": "prettier --write .",
     "test": "mocha --reporter mocha-simple-html-reporter --reporter-options output=reports/test-report.html",
     "test:api": "mocha test/*_spec.js",
-    "format:check": "prettier . --check"
+    "format:check": "prettier \"test/**/*.js\" --check --config .prettierrc"
   },
   "keywords": [],
   "author": "",
@@ -26,7 +26,7 @@
     "globals": "^16.3.0",
     "mocha": "^11.7.1",
     "mocha-simple-html-reporter": "^2.0.0",
-    "prettier": "^3.6.2"
+    "prettier": "3.6.2"
   },
   "dependencies": {
     "dotenv": "^17.2.0"
