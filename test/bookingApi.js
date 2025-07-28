@@ -1,5 +1,5 @@
-import axios from "axios";
-import { ENV } from "../env.js";
+import axios from 'axios';
+import { ENV } from '../env.js';
 
 export class BookingApi {
   constructor() {
@@ -16,13 +16,14 @@ export class BookingApi {
           password: ENV.ADMIN_PASS,
         },
         {
-          headers: { "Content-Type": "application/json" },
+          headers: { 'Content-Type': 'application/json' },
         }
       );
       this.token = response.data.token;
       return this.token;
     } catch (error) {
-      throw error;
+      console.error('Auth failed:', error.message);
+      throw new Error('Authentication failed');
     }
   }
 
@@ -30,34 +31,36 @@ export class BookingApi {
     try {
       return await axios.post(`${this.baseUrl}${url}`, payload, {
         headers: {
-          "Content-Type": "application/json",
-          Accept: "application/json",
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
         },
       });
     } catch (error) {
-      throw error;
+      console.error('Post failed:', error.message);
+      throw new Error('Post request failed');
     }
   }
 
   async sendGetRequest(path) {
     try {
       return await axios.get(`${this.baseUrl}${path}`, {
-        headers: { Accept: "application/json" },
+        headers: { Accept: 'application/json' },
       });
     } catch (error) {
-      throw error;
+      console.error('Get failed:', error.message);
+      throw new Error('Get request failed');
     }
   }
 
   /*Cookie	string	
     Sets an authorization token to access the PUT endpoint, can be used as an alternative to the Authorization
-    Default value: token=<token_value>*/ 
+    Default value: token=<token_value>*/
 
   async updateBooking(path, payload) {
     return await axios.put(`${this.baseUrl}${path}`, payload, {
       headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
         Cookie: `token=${this.token}`,
       },
     });
@@ -67,12 +70,13 @@ export class BookingApi {
     try {
       return await axios.delete(`${this.baseUrl}${path}`, {
         headers: {
-          "Content-Type": "application/json",
+          'Content-Type': 'application/json',
           Cookie: `token=${this.token}`,
         },
       });
     } catch (error) {
-      throw error;
+      console.error('Delete failed:', error.message);
+      throw new Error('Delete request failed');
     }
   }
 }

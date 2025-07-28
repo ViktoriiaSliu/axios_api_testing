@@ -13,6 +13,13 @@ pipeline {
                 bat 'npm install'
             }
         }
+        stage('Lint and Format Check') {
+            steps {
+                echo "Linting code..."
+                bat 'npm run lint'
+                bat 'npm run format'
+            }
+        }
 
         stage('Run API Tests') { 
             steps {
